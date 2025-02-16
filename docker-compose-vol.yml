@@ -7,8 +7,6 @@ services:
       - redis  # Requires the redis container to be started
     environment:
       - REDIS_HOST=redis  # Pass the correct hostname to Flask
-    volumes:
-      - ./app:/app  # Bind mount to sync the local app folder with the container
   
   redis:
     image: "redis:alpine"  # Use the standard redis image
