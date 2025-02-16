@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:7000"
+    depends_on:
+      - redis  # Requires the redis container to be started
+    environment:
+      - REDIS_HOST=redis  # Pass the correct hostname to Flask
+  
+  redis:
+    image: "redis:alpine"  # Use the standard redis image
+    command: ["redis-server", "--appendonly", "yes"]  # Start the redis server
+    volumes:
+      - redis_data:/data  # Use a named Docker Volume for persistence
+
+volumes:
+  redis_data:  # Declare the named volume
+    
